@@ -8,9 +8,7 @@ import { Request, Response } from 'express';
 
 import { BaseItem, Item } from "./item.interface";
 import { Items } from "./items.interface";
-import { degrees, PDFDocument, rgb, StandardFonts } from 'pdf-lib';
-const fs = require('fs');
-const downloadpdf = require("downloadjs");
+
 
 let items: Items = {
   1: {
@@ -39,32 +37,6 @@ let items: Items = {
 /**
  * Service Methods
  */
-export const pdfedit = async (data: any) => {
-    const url = data
-    const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer())
-  
-    const pdfDoc = await PDFDocument.load(existingPdfBytes)
-    const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica)
-  
-    const pages = pdfDoc.getPages()
-    const firstPage = pages[0]
-    const { width, height } = firstPage.getSize()
-    firstPage.drawText('Somsit Bunlang Dev!', {
-      x: 5,
-      y: height / 2 + 300,
-      size: 50,
-      font: helveticaFont,
-      color: rgb(0.95, 0.1, 0.1),
-      rotate: degrees(-45),
-    })
-    console.log("export")
-    const pdfBytes = await pdfDoc.save()
-
-    return fs.writeFileSync('./storage/testNU.pdf', pdfBytes);
-    //Trigger the browser to download the PDF document
-    //return downloadpdf(file,filePath);
-
-  };
 
 export const findAll = async (): Promise<Item[]> => Object.values(items);
 

@@ -3,7 +3,7 @@
  */
 
 import express, { Request, Response } from "express";
-import * as ItemService from "./items.service";
+import * as PdfService from "./pdf.service";
 
 /**
  * Router Definition
@@ -19,8 +19,16 @@ export const pdfRouter = express.Router();
 
 pdfRouter.get("/pdf", async (req: Request, res: Response) => {
   try {
-    const url = "https://pdf-lib.js.org/assets/with_update_sections.pdf"
-    await ItemService.pdfedit(url);
+    const getfile = {
+      courtname : "ศาลจังหวัดอุบลราชธานี",  
+      keep_on: "266",
+      keep_date: "2022-05-30",
+      filepdf: "https://pdf-lib.js.org/assets/with_update_sections.pdf",
+      created_at: "2022-05-30 16:20:55"
+    }
+    // Register Stamp in Book
+    await PdfService.stampRegister(getfile);
+
 
     res.status(200).send("แปลงไฟล์สำเร็จ");
   } catch (e) {

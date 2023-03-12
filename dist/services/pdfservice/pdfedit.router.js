@@ -40,7 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.pdfRouter = void 0;
 const express_1 = __importDefault(require("express"));
-const ItemService = __importStar(require("./items.service"));
+const PdfService = __importStar(require("./pdf.service"));
 /**
  * Router Definition
  */
@@ -51,8 +51,15 @@ exports.pdfRouter = express_1.default.Router();
 // GET items
 exports.pdfRouter.get("/pdf", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const url = "https://pdf-lib.js.org/assets/with_update_sections.pdf";
-        yield ItemService.pdfedit(url);
+        const getfile = {
+            courtname: "ศาลจังหวัดอุบลราชธานี",
+            keep_on: "266",
+            keep_date: "2022-05-30",
+            filepdf: "https://pdf-lib.js.org/assets/with_update_sections.pdf",
+            created_at: "2022-05-30 16:20:55"
+        };
+        // Register Stamp in Book
+        yield PdfService.stampRegister(getfile);
         res.status(200).send("แปลงไฟล์สำเร็จ");
     }
     catch (e) {

@@ -9,10 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.remove = exports.update = exports.create = exports.find = exports.findAll = exports.pdfedit = void 0;
-const pdf_lib_1 = require("pdf-lib");
-const fs = require('fs');
-const downloadpdf = require("downloadjs");
+exports.remove = exports.update = exports.create = exports.find = exports.findAll = void 0;
 let items = {
     1: {
         id: 1,
@@ -39,29 +36,6 @@ let items = {
 /**
  * Service Methods
  */
-const pdfedit = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    const url = data;
-    const existingPdfBytes = yield fetch(url).then(res => res.arrayBuffer());
-    const pdfDoc = yield pdf_lib_1.PDFDocument.load(existingPdfBytes);
-    const helveticaFont = yield pdfDoc.embedFont(pdf_lib_1.StandardFonts.Helvetica);
-    const pages = pdfDoc.getPages();
-    const firstPage = pages[0];
-    const { width, height } = firstPage.getSize();
-    firstPage.drawText('Somsit Bunlang Dev!', {
-        x: 5,
-        y: height / 2 + 300,
-        size: 50,
-        font: helveticaFont,
-        color: (0, pdf_lib_1.rgb)(0.95, 0.1, 0.1),
-        rotate: (0, pdf_lib_1.degrees)(-45),
-    });
-    console.log("export");
-    const pdfBytes = yield pdfDoc.save();
-    return fs.writeFileSync('./storage/testNU.pdf', pdfBytes);
-    //Trigger the browser to download the PDF document
-    //return downloadpdf(file,filePath);
-});
-exports.pdfedit = pdfedit;
 const findAll = () => __awaiter(void 0, void 0, void 0, function* () { return Object.values(items); });
 exports.findAll = findAll;
 const find = (id) => __awaiter(void 0, void 0, void 0, function* () { return items[id]; });

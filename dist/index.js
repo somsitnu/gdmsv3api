@@ -40,7 +40,7 @@ const dotenv = __importStar(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
 const helmet_1 = __importDefault(require("helmet"));
 const items_router_1 = require("./services/items/items.router");
-const pdfedit_router_1 = require("./services/items/pdfedit.router");
+const pdfedit_router_1 = require("./services/pdfservice/pdfedit.router");
 dotenv.config();
 if (!process.env.PORT) {
     process.exit(1);

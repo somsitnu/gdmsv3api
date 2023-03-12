@@ -3,7 +3,7 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
 import { itemsRouter } from "./services/items/items.router";
-import { pdfRouter } from "./services/items/pdfedit.router";
+import { pdfRouter } from "./services/pdfservice/pdfedit.router";
 
 
 
