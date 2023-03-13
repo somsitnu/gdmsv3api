@@ -65,7 +65,7 @@ export const stampRegister = async (data: any) => {
   const pathExport = './storage/text.pdf';
   console.log(pathExport);
   return fs.writeFileSync(pathExport, pdfBytes)
-  console.log(`PDF file written to: ${filePath}`);
+  //console.log(`PDF file written to: ${filePath}`);
 }
 
 export const stampKumsang = async (data: any) => {
@@ -103,5 +103,5 @@ export const stampKumsang = async (data: any) => {
   const pathExport = './storage/text.pdf';
   console.log(pathExport);
   return fs.writeFileSync(pathExport, pdfBytes)
-  console.log(`PDF file written to: ${filePath}`);
+  //console.log(`PDF file written to: ${filePath}`);
 }

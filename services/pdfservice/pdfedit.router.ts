@@ -24,9 +24,9 @@ pdfRouter.get("/pdf", async (req: Request, res: Response) => {
       keep_on: "266",
       keep_date: "2022-05-30",
       filepdf: "http://localhost/gdms/storage/12022/06/30.BPN1YmXj3gbIfuKrBrZVcvpkebx0v3aSFM9uYgFU.pdf",
-      created_at: "2022-05-30 16:20:55"
-      created_at_time: "16:20:55"
-      owner : "สมสิทธิ์"
+      created_at: "2022-05-30 16:20:55",
+      created_at_time: "16:20:55",
+      owner : "สมสิทธิ์",
     }
     // Register Stamp in Book
     await PdfService.stampRegister(getfile);
@@ -45,9 +45,9 @@ pdfRouter.get("/pdfstamp", async (req: Request, res: Response) => {
       keep_on: "266",
       keep_date: "2022-05-30",
       filepdf: "http://localhost/gdms/storage/12022/06/30.BPN1YmXj3gbIfuKrBrZVcvpkebx0v3aSFM9uYgFU.pdf",
-      created_at: "2022-05-30 16:20:55"
-      created_at_time: "16:20:55"
-      owner : "สมสิทธิ์"
+      created_at: "2022-05-30 16:20:55",
+      created_at_time: "16:20:55",
+      owner : "สมสิทธิ์",
     }
     // Register Stamp in Book
     await PdfService.stampKumsang(getfile);
