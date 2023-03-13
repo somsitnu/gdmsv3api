@@ -55,7 +55,7 @@ const stampRegister = (data) => __awaiter(void 0, void 0, void 0, function* () {
     const pathExport = './storage/text.pdf';
     console.log(pathExport);
     return fs.writeFileSync(pathExport, pdfBytes);
-    console.log(`PDF file written to: ${filePath}`);
+    //console.log(`PDF file written to: ${f}`);
 });
 exports.stampRegister = stampRegister;
 const stampKumsang = (data) => __awaiter(void 0, void 0, void 0, function* () {
@@ -88,6 +88,5 @@ const stampKumsang = (data) => __awaiter(void 0, void 0, void 0, function* () {
     const pathExport = './storage/text.pdf';
     console.log(pathExport);
     return fs.writeFileSync(pathExport, pdfBytes);
-    console.log(`PDF file written to: ${filePath}`);
 });
 exports.stampKumsang = stampKumsang;

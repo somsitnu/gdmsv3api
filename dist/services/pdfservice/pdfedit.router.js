@@ -49,7 +49,7 @@ exports.pdfRouter = express_1.default.Router();
  * Controller Definitions
  */
 // GET items
-exports.pdfRouter.get("/pdf", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.pdfRouter.get("/stamp-register", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const getfile = {
             courtname: "ศาลจังหวัดอุบลราชธานี",
@@ -58,7 +58,7 @@ exports.pdfRouter.get("/pdf", (req, res) => __awaiter(void 0, void 0, void 0, fu
             filepdf: "http://localhost/gdms/storage/12022/06/30.BPN1YmXj3gbIfuKrBrZVcvpkebx0v3aSFM9uYgFU.pdf",
             created_at: "2022-05-30 16:20:55",
             created_at_time: "16:20:55",
-            owner: "สมสิทธิ์"
+            owner: "สมสิทธิ์",
         };
         // Register Stamp in Book
         yield PdfService.stampRegister(getfile);
@@ -68,7 +68,7 @@ exports.pdfRouter.get("/pdf", (req, res) => __awaiter(void 0, void 0, void 0, fu
         res.status(500).send(e.message);
     }
 }));
-exports.pdfRouter.get("/pdfstamp", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.pdfRouter.get("/stamp-kumsang", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const getfile = {
             courtname: "ศาลจังหวัดอุบลราชธานี",
@@ -77,7 +77,7 @@ exports.pdfRouter.get("/pdfstamp", (req, res) => __awaiter(void 0, void 0, void 
             filepdf: "http://localhost/gdms/storage/12022/06/30.BPN1YmXj3gbIfuKrBrZVcvpkebx0v3aSFM9uYgFU.pdf",
             created_at: "2022-05-30 16:20:55",
             created_at_time: "16:20:55",
-            owner: "สมสิทธิ์"
+            owner: "สมสิทธิ์",
         };
         // Register Stamp in Book
         yield PdfService.stampKumsang(getfile);
