@@ -47,7 +47,7 @@ pdfRouter.get("/stamp-kumsang", async (req: Request, res: Response) => {
       filepdf: "http://localhost/gdms/storage/12022/06/30.BPN1YmXj3gbIfuKrBrZVcvpkebx0v3aSFM9uYgFU.pdf",
       created_at: "2022-05-30 16:20:55",
       created_at_time: "16:20:55",
-      owner : "สมสิทธิ์",
+      owner : "สมสิทธิ์"
     }
     // Register Stamp in Book
     await PdfService.stampKumsang(getfile);

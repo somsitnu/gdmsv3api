@@ -10,10 +10,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.stampKumsang = exports.stampRegister = void 0;
-// src/items/items.service.ts
-/**
- * Data Model Interfaces
- */
 const { PageSizes, PDFDocument, StandardFonts, drawLinesOfText, rgb, degrees, PDFFont } = require('pdf-lib');
 const fontkit = require('@pdf-lib/fontkit');
 const path = require('path');
@@ -24,7 +20,7 @@ const thaiFontBytes = fs.readFileSync('./assets/fonts/Sarabun/Sarabun-Regular.tt
  * Service Methods
  */
 const stampRegister = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    const existingPdfBytes = yield fetch(data.filepdf).then((res) => res.arrayBuffer());
+    const existingPdfBytes = yield fetch(url).then(res => res.arrayBuffer());
     const pdfDoc = yield PDFDocument.load(existingPdfBytes);
     pdfDoc.registerFontkit(fontkit);
     const sarabunFont = yield pdfDoc.embedFont(thaiFontBytes);
@@ -55,11 +51,10 @@ const stampRegister = (data) => __awaiter(void 0, void 0, void 0, function* () {
     const pathExport = './storage/text.pdf';
     console.log(pathExport);
     return fs.writeFileSync(pathExport, pdfBytes);
-    //console.log(`PDF file written to: ${f}`);
 });
 exports.stampRegister = stampRegister;
 const stampKumsang = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    const existingPdfBytes = yield fetch(data.filepdf).then((res) => res.arrayBuffer());
+    const existingPdfBytes = yield fetch(url).then(res => res.arrayBuffer());
     const pdfDoc = yield PDFDocument.load(existingPdfBytes);
     pdfDoc.registerFontkit(fontkit);
     const sarabunFont = yield pdfDoc.embedFont(thaiFontBytes);

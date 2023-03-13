@@ -1,11 +1,5 @@
 import { Request, Response } from 'express'
 
-// src/items/items.service.ts
-
-/**
- * Data Model Interfaces
- */
-
 const {
   PageSizes,
   PDFDocument,
@@ -29,9 +23,7 @@ const thaiFontBytes = fs.readFileSync(
 
 export const stampRegister = async (data: any) => {
 
-  const existingPdfBytes = await fetch(data.filepdf).then((res) =>
-    res.arrayBuffer(),
-  )
+const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer())
 
   const pdfDoc = await PDFDocument.load(existingPdfBytes)
   pdfDoc.registerFontkit(fontkit)
@@ -64,15 +56,13 @@ export const stampRegister = async (data: any) => {
   const pdfBytes = await pdfDoc.save()
   const pathExport = './storage/text.pdf';
   console.log(pathExport);
-  return fs.writeFileSync(pathExport, pdfBytes)
-  //console.log(`PDF file written to: ${f}`);
+  return fs.writeFileSync(pathExport, pdfBytes);
+
 }
 
 export const stampKumsang = async (data: any) => {
 
-  const existingPdfBytes = await fetch(data.filepdf).then((res) =>
-    res.arrayBuffer(),
-  )
+const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer())
 
   const pdfDoc = await PDFDocument.load(existingPdfBytes)
   pdfDoc.registerFontkit(fontkit)
@@ -102,6 +92,5 @@ export const stampKumsang = async (data: any) => {
   const pdfBytes = await pdfDoc.save()
   const pathExport = './storage/text.pdf';
   console.log(pathExport);
-  return fs.writeFileSync(pathExport, pdfBytes)
-
+  return fs.writeFileSync(pathExport, pdfBytes);
 }
