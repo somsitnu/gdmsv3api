@@ -68,9 +68,10 @@ exports.pdfRouter.get("/stamp-register", (req, res) => __awaiter(void 0, void 0,
         res.status(500).send(e.message);
     }
 }));
-exports.pdfRouter.get("/stamp-kumsang", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.pdfRouter.get("/stamp-kumsang/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const getfile = {
+            id: req.params.id,
             courtname: "ศาลจังหวัดอุบลราชธานี",
             keep_on: "266",
             keep_date: "2022-05-30",

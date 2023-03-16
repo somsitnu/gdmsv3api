@@ -38,9 +38,11 @@ pdfRouter.get("/stamp-register", async (req: Request, res: Response) => {
   }
 });
 
-pdfRouter.get("/stamp-kumsang", async (req: Request, res: Response) => {
+pdfRouter.get("/stamp-kumsang/:id", async (req: Request, res: Response) => {
+  
   try {
     const getfile = {
+      id: req.params.id ,
       courtname : "ศาลจังหวัดอุบลราชธานี",  
       keep_on: "266",
       keep_date: "2022-05-30",

@@ -20,17 +20,25 @@ const thaiFontBytes = fs.readFileSync('./assets/fonts/Sarabun/Sarabun-Regular.tt
  * Service Methods
  */
 const stampRegister = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    const existingPdfBytes = yield fetch(url).then(res => res.arrayBuffer());
+    const getdatas = {
+        courtname: data.courtname,
+        keep_on: data.keep_on,
+        keep_date: data.keep_date,
+        created_at_time: data.created_at_time,
+        owner: data.owner,
+        file: data.filepdf
+    };
+    const existingPdfBytes = yield fetch(getdatas.file).then(res => res.arrayBuffer());
     const pdfDoc = yield PDFDocument.load(existingPdfBytes);
     pdfDoc.registerFontkit(fontkit);
     const sarabunFont = yield pdfDoc.embedFont(thaiFontBytes);
     const pages = pdfDoc.getPages();
     const firstPage = pages[0];
     const { width, height } = firstPage.getSize();
-    firstPage.drawText(`${data.courtname}\n` +
-        `รับที่ ${data.keep_on}\n` +
-        `วันที่ ${data.keep_date}\n` +
-        `เวลา ${data.created_at_time} ผู้รับ ${data.owner}\n`, {
+    firstPage.drawText(`${getdatas.courtname}\n` +
+        `รับที่ ${getdatas.keep_on}\n` +
+        `วันที่ ${getdatas.keep_date}\n` +
+        `เวลา ${getdatas.created_at_time} ผู้รับ ${getdatas.owner}\n`, {
         x: width - 200,
         y: height - 20,
         size: 12,
@@ -48,36 +56,28 @@ const stampRegister = (data) => __awaiter(void 0, void 0, void 0, function* () {
         });
     // firstPage.addContentStreams(pdfDoc.register(newContentStream));
     const pdfBytes = yield pdfDoc.save();
-    const pathExport = './storage/text.pdf';
+    const path = yield process.env.STORAGE_PATH;
+    const pathExport = path + "testPdf.pdf";
     console.log(pathExport);
     return fs.writeFileSync(pathExport, pdfBytes);
 });
 exports.stampRegister = stampRegister;
 const stampKumsang = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    const existingPdfBytes = yield fetch(url).then(res => res.arrayBuffer());
+    const existingPdfBytes = yield fetch(data.filepdf).then(res => res.arrayBuffer());
     const pdfDoc = yield PDFDocument.load(existingPdfBytes);
     pdfDoc.registerFontkit(fontkit);
     const sarabunFont = yield pdfDoc.embedFont(thaiFontBytes);
     const pages = pdfDoc.getPages();
     const firstPage = pages[0];
     const { width, height } = firstPage.getSize();
-    const text = "sfjsaldkfjasldkfjalsdfjasldkffasdlkf";
-    firstPage.drawText(text, {
+    firstPage.drawText(data.id, {
         x: width - 200,
         y: height - 20,
         size: 12,
         font: sarabunFont,
         color: rgb(0, 0, 1),
-        lineHeight: 16,
-    }),
-        firstPage.drawRectangle({
-            x: width - 210,
-            y: height - 80,
-            width: 180,
-            height: 73,
-            borderColor: rgb(0, 0, 1),
-            borderWidth: 1.5,
-        });
+        lineHeight: 16
+    });
     // firstPage.addContentStreams(pdfDoc.register(newContentStream));
     const pdfBytes = yield pdfDoc.save();
     const pathExport = './storage/text.pdf';

@@ -39,7 +39,6 @@ const express_1 = __importDefault(require("express"));
 const dotenv = __importStar(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
 const helmet_1 = __importDefault(require("helmet"));
-const items_router_1 = require("./services/items/items.router");
 const pdfedit_router_1 = require("./services/pdfservice/pdfedit.router");
 dotenv.config();
 if (!process.env.PORT) {
@@ -50,16 +49,10 @@ const app = (0, express_1.default)();
 app.use((0, helmet_1.default)());
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
-app.use("/api", items_router_1.itemsRouter);
-app.use("/api2", pdfedit_router_1.pdfRouter);
+app.use("/api/pdfservice", pdfedit_router_1.pdfRouter);
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     //res.send('Express + TypeScript Server By Somsit');
     res.send('Express + TypeScript Server By Somsit');
-    //    var iframe = document.getElementById('iframe');
-    //    iframe.src = file;
-    //    iframe.contentWindow.focus();
-    //    iframe.contentWindow.print();
-    //    readURL(file);
 }));
 app.listen(PORT, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
