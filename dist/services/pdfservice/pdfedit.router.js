@@ -68,20 +68,13 @@ exports.pdfRouter.get("/stamp-register", (req, res) => __awaiter(void 0, void 0,
         res.status(500).send(e.message);
     }
 }));
-exports.pdfRouter.get("/stamp-kumsang/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+// pdfRouter.get("/stamp-kumsang/:id", async (req: Request, res: Response) => {
+exports.pdfRouter.post("/re-stamp-kumsang", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    //console.log(req.body);
+    const getd = req.body;
     try {
-        const getfile = {
-            id: req.params.id,
-            courtname: "ศาลจังหวัดอุบลราชธานี",
-            keep_on: "266",
-            keep_date: "2022-05-30",
-            filepdf: "http://localhost/gdms/storage/12022/06/30.BPN1YmXj3gbIfuKrBrZVcvpkebx0v3aSFM9uYgFU.pdf",
-            created_at: "2022-05-30 16:20:55",
-            created_at_time: "16:20:55",
-            owner: "สมสิทธิ์"
-        };
         // Register Stamp in Book
-        yield PdfService.stampKumsang(getfile);
+        yield PdfService.reStampKumsang(getd);
         res.status(200).send("แปลงไฟล์สำเร็จ");
     }
     catch (e) {

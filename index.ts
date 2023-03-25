@@ -1,7 +1,22 @@
 import express, { Express, Request, Response } from 'express';
 import * as dotenv from "dotenv";
 import cors from "cors";
-import helmet from "helmet";
+import helmet from "helmet";const {
+  PageSizes,
+  PDFDocument,
+  StandardFonts,
+  drawLinesOfText,
+  rgb,
+  degrees,
+  PDFFont
+} = require('pdf-lib')
+const fs = require('fs')
+import dayjs from 'dayjs';
+const buddhistEra = require('dayjs/plugin/buddhistEra')
+dayjs.extend(buddhistEra)
+require('dayjs/locale/th')
+dayjs.locale('th')
+
 import { pdfRouter } from "./services/pdfservice/pdfedit.router";
 
 dotenv.config();
@@ -17,8 +32,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/pdfservice", pdfRouter);
 app.get('/', async (req: Request, res: Response) => {
-  //res.send('Express + TypeScript Server By Somsit');
-  res.send('Express + TypeScript Server By Somsit');
+    res.send(`⚡️[server]: Server is running`);
 });
 
 app.listen(PORT, () => {

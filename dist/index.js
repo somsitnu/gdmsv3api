@@ -39,6 +39,13 @@ const express_1 = __importDefault(require("express"));
 const dotenv = __importStar(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
 const helmet_1 = __importDefault(require("helmet"));
+const { PageSizes, PDFDocument, StandardFonts, drawLinesOfText, rgb, degrees, PDFFont } = require('pdf-lib');
+const fs = require('fs');
+const dayjs_1 = __importDefault(require("dayjs"));
+const buddhistEra = require('dayjs/plugin/buddhistEra');
+dayjs_1.default.extend(buddhistEra);
+require('dayjs/locale/th');
+dayjs_1.default.locale('th');
 const pdfedit_router_1 = require("./services/pdfservice/pdfedit.router");
 dotenv.config();
 if (!process.env.PORT) {
@@ -51,8 +58,7 @@ app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use("/api/pdfservice", pdfedit_router_1.pdfRouter);
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    //res.send('Express + TypeScript Server By Somsit');
-    res.send('Express + TypeScript Server By Somsit');
+    res.send(`⚡️[server]: Server is running`);
 }));
 app.listen(PORT, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);

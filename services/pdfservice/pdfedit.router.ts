@@ -5,6 +5,7 @@
 import express, { Request, Response } from "express";
 import * as PdfService from "./pdf.service";
 
+
 /**
  * Router Definition
  */
@@ -15,47 +16,37 @@ export const pdfRouter = express.Router();
  * Controller Definitions
  */
 
-// GET items
-
-pdfRouter.get("/stamp-register", async (req: Request, res: Response) => {
+// Route Stamp Register
+pdfRouter.post("/stamp-register", async (req: Request, res: Response) => {
+  const getd = req.body;
   try {
-    const getfile = {
-      courtname : "ศาลจังหวัดอุบลราชธานี",  
-      keep_on: "266",
-      keep_date: "2022-05-30",
-      filepdf: "http://localhost/gdms/storage/12022/06/30.BPN1YmXj3gbIfuKrBrZVcvpkebx0v3aSFM9uYgFU.pdf",
-      created_at: "2022-05-30 16:20:55",
-      created_at_time: "16:20:55",
-      owner : "สมสิทธิ์",
-    }
     // Register Stamp in Book
-    await PdfService.stampRegister(getfile);
-
-
-    res.status(200).send("แปลงไฟล์สำเร็จ");
+    await PdfService.stampRegister(getd);
+    res.status(200).send("ลงทะเบียนรับ");
   } catch (e) {
     res.status(500).send((e as Error).message);
   }
 });
 
-pdfRouter.get("/stamp-kumsang/:id", async (req: Request, res: Response) => {
-  
+// Route Stamp Asarabun
+pdfRouter.post("/stamp-asarabun", async (req: Request, res: Response) => {
+  const getd = req.body;
   try {
-    const getfile = {
-      id: req.params.id ,
-      courtname : "ศาลจังหวัดอุบลราชธานี",  
-      keep_on: "266",
-      keep_date: "2022-05-30",
-      filepdf: "http://localhost/gdms/storage/12022/06/30.BPN1YmXj3gbIfuKrBrZVcvpkebx0v3aSFM9uYgFU.pdf",
-      created_at: "2022-05-30 16:20:55",
-      created_at_time: "16:20:55",
-      owner : "สมสิทธิ์"
-    }
     // Register Stamp in Book
-    await PdfService.stampKumsang(getfile);
+    await PdfService.stampAsarabun(getd);
+    res.status(200).send("ลงทะเบียนรับ");
+  } catch (e) {
+    res.status(500).send((e as Error).message);
+  }
+});
 
-
-    res.status(200).send("แปลงไฟล์สำเร็จ");
+// pdfRouter.get("/stamp-kumsang/:id", async (req: Request, res: Response) => {
+pdfRouter.post("/re-stamp-kumsang", async (req: Request, res: Response) => {
+   const getd = req.body;
+  try {
+    // Register Stamp in Book
+    await PdfService.reStampKumsang(getd);
+    res.status(200).send("ประทับคำสั่งทั้งหมด");
   } catch (e) {
     res.status(500).send((e as Error).message);
   }
@@ -63,5 +54,5 @@ pdfRouter.get("/stamp-kumsang/:id", async (req: Request, res: Response) => {
 
 
 
-
+ 
 
